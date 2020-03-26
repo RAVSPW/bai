@@ -1,7 +1,7 @@
-const  poczatek  =  2 ;
-const  różnica  =  4 ;
-const  koniec  =  14 ;
+const startValue = 2;
+const difference = 4;
+const endValue = 14;
 
-dla  ( niech  i  =  poczatek ;  i <= koniec ;  i  + =  różnica )  {
-    konsola . log ( i ) ;
+for (let i = startValue ; i <= endValue ; i += difference) {
+    console.log(i);
 }
