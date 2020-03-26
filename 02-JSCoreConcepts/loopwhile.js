@@ -1,10 +1,10 @@
-const poczatek = 2;
+const startValue = 2;
 const difference = 4;
-const koniec = 14;
+const endValue = 14;
 
-let currentValue = poczatek;
+let currentValue = startValue;
 
-while (currentValue <= koniec) {
+while (currentValue <= endValue) {
     console.log(currentValue);
     currentValue += difference;
 }
