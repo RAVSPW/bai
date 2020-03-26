@@ -1,8 +1,8 @@
 // boki trójkąta
-//a = 3;
-b = 4;
-c = 5;
-h = 7
+const a = 3;
+const b = 4;
+const c = 5;
+const h = 7
 
 // Pole trókąta o bokach ..., ... oraz ... wynosi ... .
 
