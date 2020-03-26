@@ -6,6 +6,10 @@ h = 7
 
 // Pole trókąta o bokach ..., ... oraz ... wynosi ... .
 
-let a = () => "aaaa";
+const heronsFormula = (a, b, c) => {
+    const p = (a + b + c) / 2
+    const result = p * Math.sqrt((p - a) * (p - b) * (p - c))
+    return `Pole trojkata o bokach ${a}, ${b} oraz ${c} wynosi ${result.toFixed(2)}`;
+}
 
-console.log( a() );
+console.log(heronsFormula(a, b, c));
