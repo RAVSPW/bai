@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tabela</title>
+        <meta charset="UTF-8">
+        <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+	</head>
+	<body>
+       
+        <table id="tabela">    
+            <tr>
+                <th>name</th>
+                <th>gurname</th>
+                <th>age</th>
+                <th>country</th>
+                <th>email</th>
+            </tr>
+        </table>
+    <script>
+
+      function connect() {
+        var xhr = new XMLHttpRequest(); 
+        var URL = 'https://gist.githubusercontent.com/RAVSPW/3fb71063c8c78c9337a0c57b31ec279c/raw/e73132a32a6d85aa40edd8998dac1c85493dbe2c/people.json'
+        xhr.open("GET", URL );
+        xhr.onreadystatechange = function(){display(this);};
+        xhr.send();
+       
+    }
+    function display(r) {
+        
+            if (r.status === 200 && r.readyState === 4) {
+                const people = JSON.parse(r.response);
+                
+                $('#table').DataTable({
+                        data: people,
+                        columns: [
+                            { data: 'name' },
+                            { data: 'surname' },
+                            { data: 'age' },
+                            { data: 'country' },
+                            { data: 'email' }
+                        ]
+                    });
+
+     
+        }
+    }connect();
+        
+    </script>
+</body>
+</html>
