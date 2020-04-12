@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exchange Rates</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+        <h2> Exchange rates:</h2>
+        <p id="euro"> euro </p> 
+        <p id="usd"> usd </p> 
+        <p id="gbp">gbp </p> 
+		<script>
+            var euroDisplay = new XMLHttpRequest();
+            euroDisplay.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    data= JSON.parse(euroDisplay.responseText).rates[0];
+                    document.getElementById("euro").innerText = "1 EURO = "  + data.mid + " ZŁOTYCH" ;
+                }
+            };
+            euroDisplay.open("GET", 'http://api.nbp.pl/api/exchangerates/rates/a/eur/');
+            euroDisplay.send();
+            
+            var usdDisplay = new XMLHttpRequest();
+            usdDisplay.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    data= JSON.parse(usdDisplay.responseText).rates[0];
+                    document.getElementById("usd").innerText = "1 USD = "  + data.mid + " ZłOTYCH" ;
+                }
+            };
+            usdDisplay.open("GET", 'http://api.nbp.pl/api/exchangerates/rates/a/usd/');
+            usdDisplay.send();
+
+			
+            var gbpDisplay = new XMLHttpRequest();
+            gbpDisplay.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    data= JSON.parse(gbpDisplay.responseText).rates[0];
+                    document.getElementById("gbp").innerText = "1 GBP = "  + data.mid + " ZLOTYCH" ;
+                }
+            };
+            gbpDisplay.open("GET", 'http://api.nbp.pl/api/exchangerates/rates/a/gbp/');
+            gbpDisplay.send();
+		</script>
+			
+	</body>
+</html>
