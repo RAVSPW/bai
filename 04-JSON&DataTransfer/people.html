@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+</head>
+
+<body>
+    <button type="button" onclick="connect()">All people</button>
+    <ol>
+    </ol>
+
+    <script>
+        function connect() {
+            var method = 'GET';
+            var URL ='https://gist.githubusercontent.com/RAVSPW/3fb71063c8c78c9337a0c57b31ec279c/raw/e73132a32a6d85aa40edd8998dac1c85493dbe2c/people.json';
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function () { display(this); }
+            req.open(method, URL);
+            req.send();
+        }
+
+        function display(r) {
+            if (r.readyState == 4 && r.status == 200) {
+                const response = JSON.parse(r.response);
+                const ol = document.getElementsByTagName('ol')[0];
+                for (let i of response) {
+                    const k = document.createElement('li');
+                    k.innerHTML = `${i.name} ${i.surname.toUpperCase()}, ${i.country}`;
+                    ol.appendChild(k);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
+
