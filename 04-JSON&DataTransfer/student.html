@@ -7,12 +7,25 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="connect()">
 		<p id="personalData"></p>
 
 		<script>
-
+			function connect(){
+				var method = 'GET';
+				var URL = 'https://gist.githubusercontent.com/RAVSPW/2dadef8533c7eb825788d6fb2c22381e/raw/e77b735705ab381bc2f7f8e21352a92768296642/names'
+				var xhr= new XMLHttpRequest();
+				xhr.onreadystatechange = function(){display(this);};
+				xhr.open(method, URL);
+				xhr.send();
+			}
+			function display(r){
+				if (r.readyState == 4 && r.status == 200) {
+					const nameSurname = JSON.parse(r.response);
+					document.getElementById("personalData").innerText = nameSurname.name + " " + nameSurname.surname;
+				}
+			};
 		</script>
-
+			
 	</body>
 </html>
