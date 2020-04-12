@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Wykres</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<style>
+    h1 { color: rgb(155, 12, 42); font-family: Calibri, sans-serif; }
+  </style>
+<body>
+    <h1> Wykres 10 ostatnich notowań cen złota </h1>
+    <canvas id="wykres" width="700" height="700"></canvas>
+
+    <script>
+        var method = 'GET';
+        var URL = 'http://api.nbp.pl/api/cenyzlota/last/10?format=json';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {display(this);};
+        xhr.open(method, URL);
+        xhr.send();
+
+        function display(r) {
+            if (r.readyState == 4 && r.status == 200) {
+                const response = JSON.parse(r.response)
+                const ctx = document.getElementById('wykres');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: response.map(item => item.data),
+                        datasets: [{
+                            label: 'Gold prices',
+                            data: response.map(item => item.cena),
+                            backgroundColor: 'rgba(55, 122, 142, 0.1))',
+                            borderColor: 'rgba(145, 44, 144, 0.5)',
+                            borderWidth: 2
+                        }],
+                    },
+                    options: {responsive: false}
+                });
+            }
+        }
+    </script>
+</body>
+</html>
