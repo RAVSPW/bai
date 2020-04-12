@@ -33,7 +33,7 @@
             if (r.status === 200 && r.readyState === 4) {
                 const people = JSON.parse(r.response);
                 
-                $('#table').DataTable({
+                $('#tabela').DataTable({
                         data: people,
                         columns: [
                             { data: 'name' },
