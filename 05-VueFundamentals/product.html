@@ -5,7 +5,17 @@
 </head>
 <body>
   <h1>Grades</h1>    
-
+  <div id="app">
+    <p><b>RECEIPT</b></p>
+    <p>-----------------</p>
+    <p>Product: {{product.name}}</p>
+    <p>Unit Price: {{product.unitPrice + "zł"}}</p>
+    <p>Quantity: {{product.quantity}}</p>
+    <p>Amount: {{amount + " zł"}}</p>
+    <p>VAT Tax Rate: {{product.VAT + "%"}}</p>
+    <p>=================</p>
+    <p><b>Total: {{total + " zł"}}</b></p>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,6 +25,14 @@
           unitPrice: 17.5,
           quantity: 3,
           VAT: 23
+        }
+      },
+      computed: {
+        amount() {
+          return this.product.unitPrice * this.product.quantity;
+        },
+        total() {
+          return (this.amount + this.amount * this.product.VAT / 100);
         }
       }
     });
