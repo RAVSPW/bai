@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
   <div id="app">
     <h1>TO DO APP</h1>
@@ -11,9 +13,7 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+      <li v-for="item in todos" v-on:dblclick="remove(item)">{{item}}</li>
     </ol>
   </div>
   <script>
@@ -24,11 +24,15 @@
         todos: []
       },
       methods: {
-        add: function() {
+        add: function () {
           this.todos.push(this.todo);
+        },
+        remove: function (item) {
+          this.todos.splice(this.todos.indexOf(item), 1);
         }
       }
     });
   </script>
 </body>
+
 </html>
